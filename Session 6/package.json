@@ -1,0 +1,23 @@
+{
+  "name": "cst-1206",
+  "version": "1.0.0",
+  "description": "",
+  "main": "code.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masamoe/CST-1206.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/masamoe/CST-1206/issues"
+  },
+  "homepage": "https://github.com/masamoe/CST-1206#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
