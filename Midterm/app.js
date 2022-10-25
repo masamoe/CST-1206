@@ -35,10 +35,11 @@ app.get('/employees/:department', (req, res) => {
     return res.status(200).json(depEmployees);
 });
 
-app.get('/employees/:employeeID', (req, res) => {
+app.get('/employees/id/:employeeID', (req, res) => {
     const employeeID = req.params.employeeID;
-    const idEmployees = employeeList.filter(employee => employee.employeeID == employeeID);
-    return res.status(200).json(idEmployees);
+    console.log(employeeID);
+    const empl = employeeList.find(employee => employee.employeeID == employeeID);
+    return res.status(200).json(empl);
 });
 
 app.post('/employees', (req, res) => {
@@ -62,7 +63,7 @@ app.delete('/employees/:employeeID', (req, res) => {
 });
 
 app.get('/employees/salary/highest', (req, res) => {
-    const highestSalary = employeeList.reduce((prev, current) => (prev.Salary > current.Salary) ? prev : current);
+    const highestSalary = employeeList.sort((a, b) => b.Salary - a.Salary);
     return res.status(200).json(highestSalary);
 });
 
