@@ -30,27 +30,41 @@ app.get('/employees', (req, res) => {
 });
 
 app.get('/employees/:department', (req, res) => {
-    const department = req.body;
-    let depEmployees = employeeList.filter(val => val.department == department);
+    const department = req.params.department;
+    const depEmployees = employeeList.filter(employee => employee.department === department);
     return res.status(200).json(depEmployees);
 });
 
 app.get('/employees/:employeeID', (req, res) => {
-    const employeeID = req.body;
-    let IDemployees = employeeList.filter(val => val.employeeID == employeeID);
-    return res.status(200).json(IDemployees);
+    const employeeID = req.params.employeeID;
+    const idEmployees = employeeList.filter(employee => employee.employeeID == employeeID);
+    return res.status(200).json(idEmployees);
 });
 
 app.post('/employees', (req, res) => {
     const employeeData = req.body;
     employeeList.push(employeeData);
-
-    return res.status(201).json(employeeList);
+    return res.status(200).json(employeeList);
 });
 
 app.put('/employees/:employeeID', (req, res) => {
-    
-})
+    const employeeID = req.params.employeeID;
+    const employeeData = req.body;
+    const index = employeeList.findIndex(employee => employee.employeeID == employeeID);
+    employeeList[index] = employeeData;
+    return res.status(200).json(employeeList);
+});
+
+app.delete('/employees/:employeeID', (req, res) => {
+    const id = req.params.id;
+    const index = employeeList.findIndex(val => val.id == id);
+    employeeList.splice(index, 1);
+});
+
+app.get('/employees/salary/highest', (req, res) => {
+    const highestSalary = employeeList.reduce((prev, current) => (prev.Salary > current.Salary) ? prev : current);
+    return res.status(200).json(highestSalary);
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
