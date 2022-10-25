@@ -48,7 +48,7 @@ app.post('/employees', (req, res) => {
     return res.status(200).json(employeeList);
 });
 
-app.put('/employees/:employeeID', (req, res) => {
+app.put('/employees/id/:employeeID', (req, res) => {
     const employeeID = req.params.employeeID;
     const employeeData = req.body;
     const index = employeeList.findIndex(employee => employee.employeeID == employeeID);
@@ -56,7 +56,7 @@ app.put('/employees/:employeeID', (req, res) => {
     return res.status(200).json(employeeList);
 });
 
-app.delete('/employees/:employeeID', (req, res) => {
+app.delete('/employees/id/:employeeID', (req, res) => {
     const id = req.params.id;
     const index = employeeList.findIndex(val => val.id == id);
     employeeList.splice(index, 1);
